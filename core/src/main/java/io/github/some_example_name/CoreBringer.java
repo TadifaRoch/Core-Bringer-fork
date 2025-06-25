@@ -25,35 +25,29 @@ public class CoreBringer extends ApplicationAdapter {
 
     @Override
     public void create() {
-        //initializing atlas sprite
-        boss_atlas = new TextureAtlas(Gdx.files.internal("boss_atlas/boss_atlas.atlas"));
         batch = new SpriteBatch();
-        //calling a sprite
-        textureSprite = new Sprite(boss_atlas.findRegion("Praeton_Wyrm"));
-        textureSprite.setSize(5, 5);
-        textureSprite.setBounds(10, 10, 200, 200);
-        
+        Character = new Texture(Utils.getInternalPath("hero.png"));
     }
 
     @Override
     public void render() {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
-        //calls the atlas
-        textureSprite.draw(batch);
+        //calls the hero sprite
+        batch.draw(Character, 0, 0, 160, 240);
         batch.end();
-
     }
 
     @Override
     public void dispose() {
         batch.dispose();
         Character.dispose();
-        boss_atlas.dispose();
+
     }
 
     @Override
     public void resize(int width, int height){
+        //Retains the sprite size even when maximizing and minimizing the game window
         batch.getProjectionMatrix().setToOrtho2D(0, 0, width, height);
     }
 }
